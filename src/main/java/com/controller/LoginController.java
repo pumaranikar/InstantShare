@@ -1,5 +1,6 @@
 package com.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,7 +54,16 @@ public class LoginController {
 			ModelAndView model = null;
 			
 			try {
+				// call to UserManager for register user.
+				Map<String, Object> regUser = new HashMap<String, Object>();
+				regUser.put("username", registerUser.getUsername());
+				regUser.put("name", registerUser.getName());
+				regUser.put("password", registerUser.getPassword());
+				regUser.put("email", registerUser.getEmail());
 				
+				boolean success = userManager.registerUser(regUser);
+				model = new ModelAndView("login");
+				request.setAttribute("message", "registration successful");
 				
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -61,7 +71,7 @@ public class LoginController {
 				request.setAttribute("message", "Registration failed");
 			}
 			
-			return null;
+			return model;
 		} 
 		
 }
