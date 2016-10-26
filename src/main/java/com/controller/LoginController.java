@@ -1,5 +1,7 @@
 package com.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.manager.UserManager;
+import com.model.RegisterUser;
 import com.model.User;
 
 @Controller
@@ -42,5 +45,25 @@ public class LoginController {
 			
 			return model; 
 		}
-	
+		
+		@RequestMapping(value="/register", method=RequestMethod.POST)
+		public ModelAndView registerUser(HttpServletRequest request, HttpServletResponse response,
+				@ModelAttribute("registerForm") RegisterUser registerUser) {
+			
+			ModelAndView model = null;
+			
+			try {
+				
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+				model = new ModelAndView("register");
+				request.setAttribute("message", "Registration failed");
+			}
+			
+			return null;
+		} 
+		
 }
+	
+		

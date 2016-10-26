@@ -1,6 +1,7 @@
 package com.manager;
 
 import java.sql.SQLException;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,4 +17,8 @@ public class UserManager {
 		return userService.isValidUser(username, password);
 	}
 
+	public boolean registerUser(Map<String, Object> userInfo) throws SQLException {
+		
+		return userService.register(userInfo);
+	}
 }
