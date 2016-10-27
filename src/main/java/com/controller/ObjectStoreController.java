@@ -1,4 +1,4 @@
-package com.rest.controller;
+package com.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.utils.RestUtilityService;
 
-@RestController
+@Controller
 @RequestMapping(value="/objectStore")
 public class ObjectStoreController {
 	
@@ -52,5 +53,11 @@ public class ObjectStoreController {
 		  } 
 	
 	
-
+	// test method to access object store
+	
+	@RequestMapping(value="/testget", method=RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<?> testMethod() {
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 }
