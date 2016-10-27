@@ -9,8 +9,17 @@ import com.instantshare.services.UserService;
 
 public class UserManager {
 	
-	@Autowired
 	private UserService userService;
+
+        public UserService getUserService()
+       {
+           return this.userService;
+       }
+    public void setUserService(UserService userService)
+       {
+            this.userService = userService;
+       }
+
 	
 	public boolean validateUserIdentity(String username, String password) throws SQLException {
 		
