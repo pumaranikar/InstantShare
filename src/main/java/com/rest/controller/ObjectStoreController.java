@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.utils.RestUtilityService;
+
 @RestController
 @RequestMapping(value="/objectStore")
 public class ObjectStoreController {
 	
+	protected RestUtilityService restUtility = new RestUtilityService();
 	
 	@RequestMapping(value = "/uploadFile", method=RequestMethod.POST)
 	@ResponseBody
@@ -31,11 +34,14 @@ public class ObjectStoreController {
 		      String directory = "C:/";
 		      String filepath = Paths.get(directory, filename).toString();
 		      
-		     
+	          // do we want to store file on local drive ? otherwise we can remove this part of the code.	     
 		      BufferedOutputStream stream =
 		          new BufferedOutputStream(new FileOutputStream(new File(filepath)));
 		      stream.write(uploadfile.getBytes());
 		      stream.close();
+		      
+		      // This can be async call if we have local copy.
+		      boolean success = restUtility.addObjectToContainer(new File(filepath));
 		    }
 		    catch (Exception e) {
 		      System.out.println(e.getMessage());
