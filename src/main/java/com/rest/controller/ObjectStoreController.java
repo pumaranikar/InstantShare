@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
+@RequestMapping(value="/objectStore")
 public class ObjectStoreController {
 	
 	
@@ -43,5 +44,7 @@ public class ObjectStoreController {
 		    
 		    return new ResponseEntity<>(HttpStatus.OK);
 		  } 
+	
+	
 
 }
